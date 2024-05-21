@@ -185,19 +185,23 @@ Request to Load Balancer on Port 80 ----> Routes all the requests to the Target 
    - Set up an AWS IAM user with the necessary permissions to manage Auto Scaling groups.
 
 2. **Import AWS SDK in Your Node.js Application**
-   ```javascript
-   const AWS = require('aws-sdk');
-   AWS.config.update({
-     region: 'your-region',
-     accessKeyId: 'your-access-key-id',
-     secretAccessKey: 'your-secret-access-key'
-   });
-   const autoscaling = new AWS.AutoScaling();
-   const updateDesiredCapacity = (autoScalingGroupName, desiredCapacity) => {
+
+```javascript
+const AWS = require('aws-sdk');
+AWS.config.update({
+  region: 'your-region',
+  accessKeyId: 'your-access-key-id',
+  secretAccessKey: 'your-secret-access-key'
+});
+
+const autoscaling = new AWS.AutoScaling();
+
+const updateDesiredCapacity = (autoScalingGroupName, desiredCapacity) => {
   const params = {
     AutoScalingGroupName: autoScalingGroupName,
     DesiredCapacity: desiredCapacity
   };
+  
   autoscaling.setDesiredCapacity(params, (err, data) => {
     if (err) {
       console.error(err, err.stack);
@@ -208,12 +212,7 @@ Request to Load Balancer on Port 80 ----> Routes all the requests to the Target 
 };
 
 const groupName = 'node-app-1';
-const newDesiredCapacity = 4;
-// Depends upon requirements like number of active users, queue length, requests per second, etc.
+const newDesiredCapacity = 4; // Depends upon requirements like number of active users, queue length, requests per second, etc.
 updateDesiredCapacity(groupName, newDesiredCapacity);
 
 ```
-
-
-
-
