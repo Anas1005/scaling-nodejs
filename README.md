@@ -79,16 +79,17 @@ if (cluster.isMaster) {
 - **Distributing Requests** : When a client connects to the Node.js server, the master process receives the request and distributes it to one of the available worker processes in a round-robin fashion.
 
 
-## Capacity Estimation
+## Capacity Estimation (Pending)
 
 
 
-## Horizontal Scaling
+# Horizontal Scaling
 
 Adding more instances based on a metric to handle larger loads. Every cloud provider has some auto-scaling groups, so does AWS, called ASG.
 
-### Some Buzz Words
-- **AMI**: 
+
+## Some Buzz Words
+- **AMI**:
   - Snapshot of a machine through which more machines can be created.
   
 - **Load Balancer**:
@@ -99,17 +100,17 @@ Adding more instances based on a metric to handle larger loads. Every cloud prov
   - A group of EC2 machines that a load balancer can send requests to.
   
 - **Launch Template**:
-  - A template that can be used to create a saved instance config that can be resued, shared and lauched at a later time.
-  - It is different from AMI as it has the 
-   AMI .
-   security groups (about incoming requests),
-   key pair (access to machine), 
-   starter code - The scipt that runs when the new instance finally starts.
+  - A template that can be used to create a saved instance config that can be reused, shared, and launched at a later time.
+  - It is different from AMI as it has the following:
+    - AMI
+    - Security groups (about incoming requests)
+    - Key pair (access to machine)
+    - Starter code: The script that runs when the new instance finally starts.
 
 
-# Horizontal Scaling with Auto Scaling Groups (ASG) in AWS
+## Horizontal Scaling with Auto Scaling Groups (ASG) in AWS
 
-## Steps to Configure Horizontal Scaling Using ASG in AWS
+### Steps to Configure Horizontal Scaling Using ASG in AWS
 
 1. **Create an EC2 Instance**
    - **Clone the Repository**: Start by cloning your Node.js application repository to the instance.
@@ -179,7 +180,7 @@ All the above steps can be easily done with AWS Elastic Beanstalk.
 Request to Load Balancer on Port 80 ----> Routes all the requests to the Target Group ----> Target Group routes to the application running on Port 3000
 
 
-## Note: Ad-Hoc Scaling via Node.js (Custom Metric-Based Scaling)
+### Note: Ad-Hoc Scaling via Node.js (Custom Metric-Based Scaling)
 
 1. **Create a New User with Permissions to AutoScalingFullAccess**
    - Set up an AWS IAM user with the necessary permissions to manage Auto Scaling groups.
